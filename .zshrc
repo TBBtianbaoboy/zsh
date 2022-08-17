@@ -148,6 +148,7 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# you can add your own zsh config file in any directory, add source it in this way.
 # [ -f ~/github/zsh/sources/my_pc.zsh ] && source ~/github/zsh/sources/my_pc.zsh
 # [ -f ~/github/zsh/sources/vastai_pc.zsh ] && source ~/github/zsh/sources/vastai_pc.zsh 
 
