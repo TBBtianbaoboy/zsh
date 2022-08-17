@@ -43,7 +43,7 @@ DISABLE_MAGIC_FUNCTIONS="true"
 # DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
-ENABLE_CORRECTION="true"
+# ENABLE_CORRECTION="true"
 
 # 取消注释下一行以在等待完成时显示红点。
 # Caution: this setting can cause issues with multiline prompts (zsh 5.7.1 and newer seem to work)
@@ -72,7 +72,11 @@ COMPLETION_WAITING_DOTS="true"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
+    #----------------------
+    #: brief: git alias
+    #: how to run: see $ZSH/plugins/git/README.md
 	git
+    #----------------------
     z
     gitfast
 	# docker 
@@ -116,7 +120,15 @@ plugins=(
     #----------------------
     #: brief: open browser in terminal
     #: how to run: some alias in $ZSH/plugins/frontend-search/README.md
-    frontend-search
+    web-search
+    #----------------------
+    #: brief: gitignore file template
+    #: how to run: gi list | gi [templatename] | git [templatename ] >> .gitconfig
+    gitignore
+    #----------------------
+    #: brief: golang alias
+    #: how to run: see $ZSH/plugins/golang/README.md
+    # golang
     #----------------------
 )
 
