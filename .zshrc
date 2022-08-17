@@ -1,10 +1,3 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-# if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-#   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-# fi
-
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -15,32 +8,32 @@ export ZSH="$HOME/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="jonathan"
-# ZSH_THEME="powerlevel10k/powerlevel10k"
+ZSH_THEME="random"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
 # a theme from this variable instead of looking in $ZSH/themes/
 # If set to an empty array, this variable will have no effect.
-# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
+ZSH_THEME_RANDOM_CANDIDATES=("af-magic" "jonathan")
 
-# Uncomment the following line to use case-sensitive completion.
+# 取消下面一行的注释以使用区分大小写的补全。
 CASE_SENSITIVE="true"
 
-# Uncomment the following line to use hyphen-insensitive completion.
-# Case-sensitive completion must be off. _ and - will be interchangeable.
+# 取消下面一行的注释以使用连字符不敏感的补全。
+# Case-sensitive completion must be off.
+# _和-可以互换。
 # HYPHEN_INSENSITIVE="true"
 
-# Uncomment the following line to disable bi-weekly auto-update checks.
+# 取消下面一行的注释以禁用双周自动更新检查。
 # DISABLE_AUTO_UPDATE="true"
 
-# Uncomment the following line to automatically update without prompting.
+# 取消下面一行的注释以自动更新，不提示。
 # DISABLE_UPDATE_PROMPT="true"
 
 # Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_ZSH_DAYS=13
+export UPDATE_ZSH_DAYS=30
 
-# Uncomment the following line if pasting URLs and other text is messed up.
+# 如果粘贴url和其他文本弄乱了，请取消下面一行的注释。
 DISABLE_MAGIC_FUNCTIONS="true"
 
 # Uncomment the following line to disable colors in ls.
@@ -50,12 +43,12 @@ DISABLE_MAGIC_FUNCTIONS="true"
 # DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
+ENABLE_CORRECTION="true"
 
-# Uncomment the following line to display red dots whilst waiting for completion.
+# 取消注释下一行以在等待完成时显示红点。
 # Caution: this setting can cause issues with multiline prompts (zsh 5.7.1 and newer seem to work)
 # See https://github.com/ohmyzsh/ohmyzsh/issues/5765
-# COMPLETION_WAITING_DOTS="true"
+COMPLETION_WAITING_DOTS="true"
 
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
@@ -113,13 +106,17 @@ plugins=(
     #: how to run: copypath
     copypath
     #----------------------
-    #: brief: see bindkey ##1
+    #: brief: see follow bindkey
     dircycle
     #----------------------
     #: requirement: dnfi direnv
     #: brief: cd directory auto set different environment
-    #: vim .envrc and direnv allow
+    #: how to run: vim .envrc and direnv allow
     direnv
+    #----------------------
+    #: brief: open browser in terminal
+    #: how to run: some alias in $ZSH/plugins/frontend-search/README.md
+    frontend-search
     #----------------------
 )
 
@@ -151,8 +148,10 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# [ -f ~/github/zsh/sources/my_pc.zsh ] && source ~/github/zsh/sources/my_pc.zsh
+# [ -f ~/github/zsh/sources/vastai_pc.zsh ] && source ~/github/zsh/sources/vastai_pc.zsh 
 
-#: ---------- alias
+#: --------------------------------------------- alias
 ## vim
 alias v='nvim'
 alias vi='nvim'
@@ -178,15 +177,6 @@ alias c='clear;'
 ## nc scan tcp or udp port
 alias nctcp='nc -vz -w10'
 alias ncudp='nc -vzu -w10'
-## Golang
-# export GOPATH="$HOME/go"
-# export GOBINPATH="$HOME/go/bin"
-# export GOPROXY=https://goproxy.io,direct
-# export GO111MODULE=on
-## k8s
-# export KUBECONFIG=/etc/kubernetes/admin.conf
-## minikube
-# export NO_PROXY=localhost,127.0.0.1,10.96.0.0/12,192.168.99.0/24,192.168.39.0/24
 ## directory stack
 alias pd='pushd'
 alias dp='popd'
@@ -197,14 +187,6 @@ alias cat='bat'
 alias tldr='tldr -t ocean'
 ## calcurse for plan
 alias calp='calcurse'
-## private env
-alias nla='v ~/github/note/linux/all.sh'
-alias nlv='v ~/github/note/linux/nvim.sh'
-alias nlc='v ~/github/note/linux/command.sh'
-alias nlk='v ~/github/note/linux/kernel.sh'
-alias nlt='cd ~/github/note/tools'
-alias np='v ~/github/note/passwd/note.sh'
-alias n='v ~/github/note/personal/note.md'
 ## weather reporter
 alias wea='curl wttr.in'
 ## du pro
@@ -217,8 +199,6 @@ alias pbcopy='xsel --clipboard --input'
 alias pbpaste='xsel --clipboard --output'
 ## xdg-open any
 alias open='xdg-open'
-## redis client
-# alias redis='sudo /snap/bin/redis-desktop-manager.rdm'
 ## kitty view image/directory
 alias icat='kitty +kitten icat '
 ## screen saver
@@ -235,34 +215,24 @@ alias de='docker exec -it'
 alias dcp='docker container prune'
 alias dip='docker image prune'
 alias ds='docker stop'
-#:---------- end alias
+#: --------------------------------------------- end alias
 
-#: ---------- export
+#: --------------------------------------------- export
 ## man retry to nvim
 export MANPAGER='nvim +Man!'
 export PATH=$HOME/.local/bin:$PATH
 export PATH=$HOME/bin:$PATH
 export PATH=$HOME/.cargo/bin:$PATH
-## grpc config
-# export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig
-# export LD_LIBRARY_PATH=/usr/local/lib
 ## update default editor,don't use nano
 export EDITOR=nvim
 ## clash proxy
 # export http_proxy=http://127.0.0.1:7890 && export https_proxy=http://127.0.0.1:7890
 # unset http_proxy && unset https_proxy
-## node
-# export PATH=$PATH:/usr/local/node/bin
-## grpc
-# export PATH=$PATH:/home/aico/go/bin
-#: ---------- end export
+#: --------------------------------------------- end export
 
-## enjory_tools wait to be remove
-# eval $(thefuck --alias)
 
+#: --------------------------------------------- function
 for i in {0..9}; do bindkey -r "^[$i"; done
-
-#: ---------- function
 ## cd cnd ls
 function cl { cd $1; ls; }
 ## cd using dir stack
@@ -314,42 +284,9 @@ function dlt(){
     wget -q https://registry.hub.docker.com/v1/repositories/$1/tags -O - | \
     jq -r '.[].name'
 }
-#: ---------- end function
+#: --------------------------------------------- end function
 
-
-
-# source /home/aico/.config/broot/launcher/bash/br
-
-# >>> conda initialize >>>
-#: ---------- my pc config
-# !! Contents within this block are managed by 'conda init' !!
-# __conda_setup="$('/home/aico/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-# if [ $? -eq 0 ]; then
-#     eval "$__conda_setup"
-# else
-#     if [ -f "/home/aico/anaconda3/etc/profile.d/conda.sh" ]; then
-#         . "/home/aico/anaconda3/etc/profile.d/conda.sh"
-#     else
-#         export PATH="/home/aico/anaconda3/bin:$PATH"
-#     fi
-# fi
-# unset __conda_setup
-#: ---------- vastai pc config
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/usr/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/usr/etc/profile.d/conda.sh" ]; then
-        . "/usr/etc/profile.d/conda.sh"
-    else
-        export PATH="/usr/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
-
-#: ---------- binkkey
+#: --------------------------------------------- binkkey
 ## d list move <c-s> <c-k>
 bindkey -M emacs "^S" insert-cycledleft
 bindkey -M viins "^S" insert-cycledleft
@@ -359,4 +296,4 @@ bindkey -M viins "^K" insert-cycledright
 bindkey -M vicmd "^K" insert-cycledright
 ## fast go to last directory
 bindkey -s '^V' 'cd ..\n'
-#:---------- end bingkey
+#:---------------------------------------------- end bingkey
