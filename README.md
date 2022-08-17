@@ -8,15 +8,15 @@
 
 ## search
 
-[search](./image/search.png)
+![search](./image/search.png)
 
 ## highlight
 
-[highlight](./image/highlight.png)
+![highlight](./image/highlight.png)
 
 ## auto suggestions
 
-[auto-suggest](./image/auto-suggest.png)
+![auto-suggest](./image/auto-suggest.png)
 
 ## more
 
