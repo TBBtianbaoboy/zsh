@@ -16,7 +16,7 @@
 
 ## auto suggestions
 
-![auto-suggest](./image/auto_suggest.png)
+![auto-suggest](./image/auto_suggestion.png)
 
 ## more
 
