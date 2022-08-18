@@ -15,14 +15,6 @@ export PATH=$PATH:/usr/local/node/bin
 ## grpc
 export PATH=$PATH:/home/aico/go/bin
 
-## private env
-alias nla='v ~/github/note/linux/all.sh'
-alias nlv='v ~/github/note/linux/nvim.sh'
-alias nlc='v ~/github/note/linux/command.sh'
-alias nlk='v ~/github/note/linux/kernel.sh'
-alias nlt='cd ~/github/note/tools'
-alias np='v ~/github/note/passwd/note.sh'
-alias n='v ~/github/note/personal/note.md'
 ## redis client
 alias redis='sudo /snap/bin/redis-desktop-manager.rdm'
 

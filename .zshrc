@@ -228,6 +228,14 @@ alias de='docker exec -it'
 alias dcp='docker container prune'
 alias dip='docker image prune'
 alias ds='docker stop'
+## private env
+alias nla='v ~/github/note/linux/all.sh'
+alias nlv='v ~/github/note/linux/nvim.sh'
+alias nlc='v ~/github/note/linux/command.sh'
+alias nlk='v ~/github/note/linux/kernel.sh'
+alias nlt='cd ~/github/note/tools'
+alias np='v ~/github/note/passwd/note.sh'
+alias n='v ~/github/note/personal/note.md'
 #: --------------------------------------------- end alias
 
 #: --------------------------------------------- export
