@@ -247,7 +247,7 @@ export PATH=$HOME/.cargo/bin:$PATH
 ## update default editor,don't use nano
 export EDITOR=nvim
 ## clash proxy
-# export http_proxy=http://127.0.0.1:7890 && export https_proxy=http://127.0.0.1:7890
+# export http_proxy=http://127.0.0.1:7890 && export https_proxy=http://127.0.0.1:7890 && export all_proxy=socks5://127.0.0.1:7891
 # unset http_proxy && unset https_proxy
 #: --------------------------------------------- end export
 
