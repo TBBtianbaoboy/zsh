@@ -295,6 +295,7 @@ if [ -n "$1" ] ; then
         *.tgz) shift && tar -czf $FILE $* ;;
         *.zip) shift && zip $FILE $* ;;
         *.rar) shift && rar $FILE $* ;;
+        *.tar.zst) shift && tar --use-compress-program=unzstd -xvf $FILE $* ;;
         esac
     else
         echo "usage: q-compress <foo.tar.gz> ./foo ./bar"
