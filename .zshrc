@@ -85,9 +85,10 @@ plugins=(
 	sudo     #自动添加sudo ,两下esc
 	extract #万能解压 x 压缩包名
 	ripgrep
-    # kubectl
-	zsh-autosuggestions
-	zsh-syntax-highlighting
+    kubectl
+	zsh-autosuggestions # custom plugin
+	zsh-syntax-highlighting # custom plugin
+    you-should-use # custom plugin (git clone https://github.com/MichaelAquilina/zsh-you-should-use.git $ZSH_CUSTOM/plugins/you-should-use)
     #----------------------
     #: brief: show all shortcuts
     #: how to run: acs
@@ -131,6 +132,13 @@ plugins=(
     # golang
     #----------------------
 )
+
+# zsh autopair custom plugin
+if [[ ! -d ~/.zsh-autopair ]]; then
+  git clone https://github.com/hlissner/zsh-autopair ~/.zsh-autopair
+fi
+source ~/.zsh-autopair/autopair.zsh
+autopair-init
 
 source $ZSH/oh-my-zsh.sh
 
@@ -247,8 +255,12 @@ export PATH=$HOME/.cargo/bin:$PATH
 ## update default editor,don't use nano
 export EDITOR=nvim
 ## clash proxy
-# export http_proxy=http://127.0.0.1:7890 && export https_proxy=http://127.0.0.1:7890 && export all_proxy=socks5://127.0.0.1:7891
+# export http_proxy=http://127.0.0.1:7890 && export https_proxy=http://127.0.0.1:7890
 # unset http_proxy && unset https_proxy
+export PATH=$HOME/.config/nvim/bin:$PATH
+
+export GOPATH=$HOME/go
+export PATH=$PATH:$GOPATH/bin
 #: --------------------------------------------- end export
 
 
@@ -295,7 +307,6 @@ if [ -n "$1" ] ; then
         *.tgz) shift && tar -czf $FILE $* ;;
         *.zip) shift && zip $FILE $* ;;
         *.rar) shift && rar $FILE $* ;;
-        *.tar.zst) shift && tar --use-compress-program=unzstd -xvf $FILE $* ;;
         esac
     else
         echo "usage: q-compress <foo.tar.gz> ./foo ./bar"
@@ -319,3 +330,6 @@ bindkey -M vicmd "^K" insert-cycledright
 ## fast go to last directory
 bindkey -s '^V' 'cd ..\n'
 #:---------------------------------------------- end bingkey
+#
+#: --------------------------------------------- cargo
+source "$HOME/.cargo/env"
