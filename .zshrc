@@ -205,7 +205,7 @@ alias dp='popd'
 alias cat='bat'
 ## tldr 
 ##! please install manually
-alias tldr='tldr -t ocean'
+# alias tldr='tldr -t ocean'
 ## calcurse for plan
 alias calp='calcurse'
 ## weather reporter
@@ -244,6 +244,9 @@ alias nlk='v ~/github/note/linux/kernel.sh'
 alias nlt='cd ~/github/note/tools'
 alias np='v ~/github/note/passwd/note.sh'
 alias n='v ~/github/note/personal/note.md'
+## sapt
+alias gptc='sgpt --code'
+alias gpt='sgpt'
 #: --------------------------------------------- end alias
 
 #: --------------------------------------------- export
@@ -261,6 +264,8 @@ export PATH=$HOME/.config/nvim/bin:$PATH
 
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
+## openai api key
+# export OPENAI_API_KEY=
 #: --------------------------------------------- end export
 
 
@@ -333,3 +338,16 @@ bindkey -s '^V' 'cd ..\n'
 #
 #: --------------------------------------------- cargo
 source "$HOME/.cargo/env"
+# Shell-GPT integration ZSH v0.1
+_sgpt_zsh() {
+if [[ -n "$BUFFER" ]]; then
+    _sgpt_prev_cmd=$BUFFER
+    BUFFER+="⌛"
+    zle -I && zle redisplay
+    BUFFER=$(sgpt --shell <<< "$_sgpt_prev_cmd")
+    zle end-of-line
+fi
+}
+zle -N _sgpt_zsh
+bindkey ^l _sgpt_zsh
+# Shell-GPT integration ZSH v0.1
