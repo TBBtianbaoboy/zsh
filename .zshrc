@@ -244,7 +244,7 @@ alias nlk='v ~/github/note/linux/kernel.sh'
 alias nlt='cd ~/github/note/tools'
 alias np='v ~/github/note/passwd/note.sh'
 alias n='v ~/github/note/personal/note.md'
-## sapt
+## sapt (pip install shell-gpt)
 alias gptc='sgpt --code'
 alias gpt='sgpt'
 #: --------------------------------------------- end alias
