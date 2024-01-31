@@ -55,18 +55,18 @@ function usage() {
 }
 #------------------------------------------------------------------------------ main
 function dnf_check() {
-    if [ $1 == "autojump-zsh" ]; then
+    if [ "$1" == "autojump-zsh" ]; then
         check_command "autojump"
-    elif [ $1 == "xlockmore" ]; then
+    elif [ "$1" == "xlockmore" ]; then
         check_command "xlock"
     else
-        check_command $1
+        check_command "$1"
     fi
     if [ $? -eq 0 ]; then
-        # run_command "sudo dnf install -y $1"
-        # if [ $? -eq 1 ]; then
-        #     success "Successfully installed $1 in $(command -v $1)"
-        # fi
+        run_command "sudo dnf install -y $1"
+        if [ $? -eq 1 ]; then
+            success "Successfully installed $1 in $(command -v $1)"
+        fi
         exit 1
     fi
 }
@@ -181,22 +181,24 @@ function main() {
                 exit 0
                 ;;
             -i | --install)
-                dnf_check "zsh"
-                dnf_check "git"
-                dnf_check "wget"
-                zsh_env_check_and_install
-                # dnf_check "lsd"
-                # nvim_install "nvim"
-                # dnf_check "autojump-zsh"
-                # dnf_check "direnv"
-                # dnf_check "calcurse"
-                # dnf_check "bat"
-                # dnf_check "duf"
-                # dnf_check "xlockmore"
-                # dnf_check "xsel"
-                # dnf_check "cargo"
-                # dnf_check "cmake"
-                # dnf_check "jq"
+                dnf_check "zsh" # zsh
+                dnf_check "git" # for install oh-my-zsh
+                dnf_check "wget" # for install oh-my-zsh
+                zsh_env_check_and_install # zsh
+                dnf_check "lsd" # ls with syntax highlight
+                nvim_install "nvim" # neovim
+                dnf_check "autojump-zsh" # for autojump
+                dnf_check "direnv" # for .envrc
+                dnf_check "calcurse" # calendar
+                dnf_check "bat" # cat with syntax highlight
+                dnf_check "duf" # disk usage
+                dnf_check "xlockmore" # for lock screen
+                dnf_check "xsel" # for copy to system clipboard
+                dnf_check "cargo" # for install du-dust
+                dnf_check "cmake" # for install coc.nvim
+                dnf_check "jq" # json query
+                dnf_check "navi" # cli cheatsheet
+                dnf_check "hexyl" # 十六进制查看器
                 # cargo_check "du-dust"
                 # dnf_check "kitty"
                 ;;
