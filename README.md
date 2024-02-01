@@ -1,8 +1,7 @@
 # Platform
 
 > This Repo is useful in Fedora 34+.
-> If want to make it run on other platforms, please give requirements
-> in issues.
+> If want to make it run on other platforms, please give requirements in issues.
 
 # Demo
 
