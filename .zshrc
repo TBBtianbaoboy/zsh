@@ -72,6 +72,8 @@ COMPLETION_WAITING_DOTS="true"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
+    # TODO
+    common-aliases
     #----------------------
     #: brief: git alias
     #: how to run: see $ZSH/plugins/git/README.md
@@ -83,7 +85,6 @@ plugins=(
 	#     docker-compose
 	# golang
 	sudo     #自动添加sudo ,两下esc
-	extract #万能解压 x 压缩包名
 	ripgrep
     kubectl
 	zsh-autosuggestions # custom plugin
@@ -96,7 +97,8 @@ plugins=(
     #----------------------
     #: requirement: dnfi autojump-zsh
     #: brief: cd directory faster
-    #: how to run: j jc jo jco
+    #: run: j = 进入指定目录 | jo = 打开制定目录的文件管理器
+    #: example: j v old | jo v old
     autojump
     #----------------------
     #: brief: copy CLI command to clipboard
@@ -104,20 +106,32 @@ plugins=(
     copybuffer
     #----------------------
     #: brief: copy file contents to clipboard
-    #: how to run: copyfile
+    #: how to run: copyfile | cpf
     copyfile
     #----------------------
     #: brief: copy file absolutely path to clipboard
-    #: how to run: copypath
+    #: how to run: copypath | cpp
     copypath
     #----------------------
     #: brief: see follow bindkey
     dircycle
     #----------------------
-    #: requirement: dnfi direnv
-    #: brief: cd directory auto set different environment
-    #: how to run: vim .envrc and direnv allow
-    direnv
+    # | Alias | Command                 | Description              |
+    # |-------|-------------------------|--------------------------|
+    # | dnfl  | `dnf list`              | List packages            |
+    # | dnfli | `dnf list installed`    | List installed packages  |
+    # | dnfgl | `dnf grouplist`         | List package groups      |
+    # | dnfmc | `dnf makecache`         | Generate metadata cache  |
+    # | dnfp  | `dnf info`              | Show package information |
+    # | dnfs  | `dnf search`            | Search package           |
+    # | **Use `sudo`**                                             |
+    # | dnfu  | `sudo dnf upgrade`      | Upgrade package          |
+    # | dnfi  | `sudo dnf install`      | Install package          |
+    # | dnfgi | `sudo dnf groupinstall` | Install package group    |
+    # | dnfr  | `sudo dnf remove`       | Remove package           |
+    # | dnfgr | `sudo dnf groupremove`  | Remove package group     |
+    # | dnfc  | `sudo dnf clean all`    | Clean cache              |
+    dnf
     #----------------------
     #: brief: open browser in terminal
     #: how to run: some alias in $ZSH/plugins/frontend-search/README.md
@@ -170,17 +184,22 @@ source $ZSH/oh-my-zsh.sh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 # you can add your own zsh config file in any directory, add source it in this way.
 # [ -f ~/github/zsh/sources/my_pc.zsh ] && source ~/github/zsh/sources/my_pc.zsh
-# [ -f ~/github/zsh/sources/vastai_pc.zsh ] && source ~/github/zsh/sources/vastai_pc.zsh 
+[ -f ~/github/zsh/sources/vastai_pc.zsh ] && source ~/github/zsh/sources/vastai_pc.zsh 
 
 #: --------------------------------------------- alias
+## copypath
+alias cpn='copypath'
+alias cpf='copyfile'
+## omz
+alias omzr='omz reload'
+alias omzu='omz update'
 ## vim
 alias v='nvim'
 alias vi='nvim'
 alias vim='nvim'
-## dnf
-alias dnfi="sudo dnf install -y "
-alias dnfr="sudo dnf remove "
-alias dnfs="sudo dnf search "
+## gh
+alias gs="gh copilot suggest"
+alias ge="gh copilot explain"
 ## ls
 alias ls='lsd'
 alias lsl='ls -lh'
@@ -265,7 +284,8 @@ export PATH=$HOME/.config/nvim/bin:$PATH
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
 ## openai api key
-# export OPENAI_API_KEY=
+export OPENAI_API_KEY=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
+export XTENSAD_LICENSE_FILE=5281@192.168.16.6
 #: --------------------------------------------- end export
 
 
@@ -325,16 +345,18 @@ function dlt(){
 #: --------------------------------------------- end function
 
 #: --------------------------------------------- binkkey
-## d list move <c-s> <c-k>
+########################### dircycle
+## dirs list move by using <c-s> <c-k>
 bindkey -M emacs "^S" insert-cycledleft
 bindkey -M viins "^S" insert-cycledleft
 bindkey -M vicmd "^S" insert-cycledleft
 bindkey -M emacs "^K" insert-cycledright
 bindkey -M viins "^K" insert-cycledright
 bindkey -M vicmd "^K" insert-cycledright
+########################### dircycle
 ## fast go to last directory
 bindkey -s '^V' 'cd ..\n'
-#:---------------------------------------------- end bingkey
+#:---------------------------------------------- bingkey
 #
 #: --------------------------------------------- cargo
 source "$HOME/.cargo/env"
@@ -351,3 +373,8 @@ fi
 zle -N _sgpt_zsh
 bindkey ^l _sgpt_zsh
 # Shell-GPT integration ZSH v0.1
+
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
