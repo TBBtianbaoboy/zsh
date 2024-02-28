@@ -67,7 +67,6 @@ function dnf_check() {
         if [ $? -eq 1 ]; then
             success "Successfully installed $1 in $(command -v $1)"
         fi
-        exit 1
     fi
 }
 #------------------------------------------------------------------------------
@@ -151,6 +150,16 @@ function zsh_env_check_and_install() {
         custom_plugin_install zsh-syntax-highlighting
     else
         success "zsh plugin zsh-syntax-highlighting is already installed in $ZSH_CUSTOM/plugins"
+    fi
+    if [ ! -d $ZSH_CUSTOM/plugins/you-should-use ]; then
+        run_command "git clone https://github.com/MichaelAquilina/zsh-you-should-use.git $ZSH_CUSTOM/plugins/you-should-use"
+        if [ $? -eq 1 ]; then
+            success "Successfully install zsh plugin you-should-use in $ZSH_CUSTOM/plugins"
+        else
+            error "Failed to install zsh plugin you-should-use in $ZSH_CUSTOM/plugins"
+        fi
+    else
+        success "zsh plugin you-should-use is already installed in $ZSH_CUSTOM/plugins"
     fi
     if [ ! -d $HOME/.fzf ];then
         git clone --depth 1 https://github.com/junegunn/fzf.git $HOME/.fzf
